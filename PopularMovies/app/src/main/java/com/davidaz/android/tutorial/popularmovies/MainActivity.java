@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements ListItemClickHand
         intentToStartDetailActivity.putExtra(FilmDetailActivity.RESULT, result);
         startActivity(intentToStartDetailActivity);
     }
+	
+	//This function is used to see if there is any internet connection. I take it from stackoverflow
 
     public boolean isOnline() {
         ConnectivityManager cm =
