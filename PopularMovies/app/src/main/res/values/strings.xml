@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="title_activity_film_detail">FilmDetailActivity</string>
+    <string name="title">Interstellar</string>
+    <string name="release">Release Date: </string>
+    <string name="average">User votes: </string>
+    <string name="synopsis">Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.</string>
+    <string name="sortPop">Most Popular</string>
+    <string name="sortAvg">Vote Average</string>
+    <string name="desc">↓</string>
+    <string name="asc">↑</string>
+    <string name="error_message">ERROR</string>
+</resources>

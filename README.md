@@ -1,2 +1,2 @@
 # TutorialUdacity
-Tutorial de Popular Movies
+Your api key of popular movies should be put on the MainActivity.java, line 29.
