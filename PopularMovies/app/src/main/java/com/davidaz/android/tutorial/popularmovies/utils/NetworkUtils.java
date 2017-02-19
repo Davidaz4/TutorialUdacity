@@ -18,17 +18,14 @@ public final class NetworkUtils {
 
     private static final String TAG = "Davidaz Network";
     final static String FILMDB_BASE_URL = "https://api.themoviedb.org/3/";
-    final static String DISCOVER = "discover";
     final static String MOVIE = "movie";
     final static String PARAM_API = "api_key";
-    final static String PARAM_SORT = "sort_by";
 
     public static URL buildUrl(String api, String sort) {
         Uri builtUri = Uri.parse(FILMDB_BASE_URL).buildUpon()
-                .appendPath(DISCOVER)
                 .appendPath(MOVIE)
+                .appendPath(sort)
                 .appendQueryParameter(PARAM_API, api)
-                .appendQueryParameter(PARAM_SORT, sort)
                 .build();
         URL url = null;
         try {

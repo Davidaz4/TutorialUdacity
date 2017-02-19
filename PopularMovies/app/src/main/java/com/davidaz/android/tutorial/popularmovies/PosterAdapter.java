@@ -84,11 +84,11 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.PosterAdap
     public void onBindViewHolder(PosterAdapterViewHolder posterAdapterViewHolder, int position) {
         Log.d(TAG, "imgPosterBindView");
         String path = filmList.get(position).getPoster_uri_path();
-        if (path != null) {
-            Picasso.with(posterAdapterViewHolder.itemView.getContext()).load(path).into(posterAdapterViewHolder.poster);
-        }
-        else
-            posterAdapterViewHolder.poster.setImageResource(R.drawable.img_poster);
+        Picasso.with(posterAdapterViewHolder.itemView.getContext())
+                .load(path)
+                .placeholder(R.drawable.img_poster)
+                .error(R.drawable.img_poster)
+                .into(posterAdapterViewHolder.poster);
     }
 
     @Override

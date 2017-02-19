@@ -7,10 +7,4 @@
         app:showAsAction="ifRoom"
         android:title="@string/sortPop"
         />
-    <item
-        android:id="@+id/ascdesc"
-        android:orderInCategory="2"
-        app:showAsAction="ifRoom"
-        android:title="@string/desc"
-        />
 </menu>

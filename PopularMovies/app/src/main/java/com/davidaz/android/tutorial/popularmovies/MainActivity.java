@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,11 +29,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements ListItemClickHandler {
     private String apiKey = "YOURAPIKEY";
     private static final String TAG = "Davidaz main";
-    private String sortage = "popularity";
-    private String order = ".desc";
+    private String sortage = "popular";
     private RecyclerView mRecyclerView;
     private PosterAdapter mPosterAdapter;
     private TextView mErrorMessageDisplay;
+    private boolean wasOffline = true;
     private ProgressBar mLoadingIndicator;
 
     @Override
@@ -40,11 +41,11 @@ public class MainActivity extends AppCompatActivity implements ListItemClickHand
         super.onCreate(savedInstanceState);
         if(isOnline()){
             setContentView(R.layout.activity_main);
+            wasOffline = false;
             mRecyclerView = (RecyclerView) findViewById(R.id.rv_posters);
             mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
             mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-            GridLayoutManager layoutManager
-                    = new GridLayoutManager(this,2);
+            GridLayoutManager layoutManager = new GridLayoutManager(this, calculateNoOfColumns(getBaseContext()));
             mRecyclerView.setLayoutManager(layoutManager);
             mRecyclerView.setHasFixedSize(true);
             mPosterAdapter = new PosterAdapter(this, this);
@@ -57,10 +58,17 @@ public class MainActivity extends AppCompatActivity implements ListItemClickHand
         }
     }
 
+    //Code from stackoverflow
+    public static int calculateNoOfColumns(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        int noOfColumns = (int) (dpWidth / 180);
+        return noOfColumns;
+    }
 
     private void loadMoviePosters() {
         showPosterDataView();
-        new FetchPostersTask().execute(apiKey, sortage + order);
+        new FetchPostersTask().execute(apiKey, sortage);
     }
 
 
@@ -140,43 +148,46 @@ public class MainActivity extends AppCompatActivity implements ListItemClickHand
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
         MenuInflater inflater = getMenuInflater();
         /* Use the inflater's inflate method to inflate our menu layout to this menu */
         inflater.inflate(R.menu.main, menu);
         /* Return true so that the menu is displayed in the Toolbar */
-        return true;
+    return true;
     }
 
+    private void restart(){
+        setContentView(R.layout.activity_main);
+        wasOffline = false;
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_posters);
+        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, calculateNoOfColumns(getBaseContext()));
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mPosterAdapter = new PosterAdapter(this, this);
+        mRecyclerView.setAdapter(mPosterAdapter);
+        loadMoviePosters();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.sorting) {
-            if (getString(R.string.sortPop).equals(item.getTitle())) {
-                sortage = "vote_average";
-                item.setTitle(getString(R.string.sortAvg));
+        if(isOnline()) {
+            if(wasOffline)
+                restart();
+            if (id == R.id.sorting) {
+                if (getString(R.string.sortPop).equals(item.getTitle())) {
+                    sortage = "top_rated";
+                    item.setTitle(getString(R.string.sortAvg));
+                } else {
+                    sortage = "popular";
+                    item.setTitle(getString(R.string.sortPop));
+                }
+                loadMoviePosters();
+                return true;
             }
-            else{
-                sortage = "popularity";
-                item.setTitle(getString(R.string.sortPop));
-            }
-            loadMoviePosters();
-            return true;
         }
-        if (id == R.id.ascdesc) {
-            if (getString(R.string.asc).equals(item.getTitle())) {
-                order = ".desc";
-                item.setTitle(R.string.desc);
-            }
-            else {
-                order = ".asc";
-                item.setTitle(R.string.asc);
-            }
-            loadMoviePosters();
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 

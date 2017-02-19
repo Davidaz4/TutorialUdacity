@@ -1,76 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_film_detail"
-    android:layout_width="match_parent"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.davidaz.android.tutorial.popularmovies.FilmDetailActivity"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary">
-
-    <TextView
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_film_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        tools:text="@string/title"
-        android:gravity="center_horizontal"
-        android:paddingBottom="10dp"
-        android:textColor="@android:color/white"
-        tools:textSize="@dimen/titles_size" />
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.davidaz.android.tutorial.popularmovies.FilmDetailActivity"
+        android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/img_poster"
-        android:id="@+id/poster"
-        android:layout_gravity="center_horizontal" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:id="@+id/title"
+            tools:text="@string/title"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:textColor="@android:color/white"
+            tools:textSize="@dimen/titles_size" />
 
-            <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/release"
-                tools:text="@string/release"
-                android:textSize="@dimen/titles_size"
-                android:textColor="@android:color/white"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/img_poster"
+            android:id="@+id/poster"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/release"
+            tools:text="@string/release"
+            android:textSize="@dimen/titles_size"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" />
 
-            <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/average"
-                tools:text="@string/average"
-                android:textSize="@dimen/titles_size"
-                android:textColor="@android:color/white"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp" />
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/average"
+            tools:text="@string/average"
+            android:textSize="@dimen/titles_size"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
+            android:paddingBottom="10dp" />
 
-            <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/synopsis"
-                tools:text="@string/synopsis"
-                android:textSize="@dimen/titles_size"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-    </ScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/synopsis"
+            android:textSize="@dimen/titles_size"
+            android:textColor="@android:color/white"
+            tools:text="@string/synopsis" />
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
